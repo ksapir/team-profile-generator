@@ -18,6 +18,7 @@ class Employee {
         
     };
     getRole() {
+        console.log("Employee")
         return "Employee"
     }
     printEmployee(){
@@ -26,5 +27,6 @@ class Employee {
         console.log(this.email)
     }
 }
+
 
 module.exports = Employee
