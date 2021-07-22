@@ -16,7 +16,5 @@ class Manager extends Employee{
     }
 }
 
-const larry = new Manager("Karen", 40, "k@k.k", 130);
 
-larry.getRole()
 module.exports = Manager

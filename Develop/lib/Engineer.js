@@ -16,7 +16,5 @@ class Engineer extends Employee{
     }
     
 }
-const Karen = new Engineer("Karen", 12, "k@k.k", "ksapir")
-Karen.getGithub()
-Karen.getRole()
+
 module.exports = Engineer
