@@ -16,5 +16,9 @@ class Engineer extends Employee{
     }
     
 }
-
+// const Karen = new Engineer ("Karen", 1, "karen@karen.karen", "ksapir")
+// Karen.printEmployee()
+// Karen.getRole()
+// Karen.getGithub()
+// console.log(Karen)
 module.exports = Engineer

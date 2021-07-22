@@ -4,29 +4,48 @@ const fs = require('fs')
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
+const Employee = require('./lib/Employee')
 
 const generateHTML = require('./util/generateHtml.js');
+const { exit } = require('process');
 const employees = []
 
-// inquirer.prompt([
-//     {
-//         type: "list",
-//         message: "What type of employee would you like to add?",
-//         choices: ["manager", "engineer", "intern"],
-//         name: "tyoeOfEmployee"
-//     }
-// ]).then(() => {
-//     if (input.typeOfEmployee == "manager"){
-//         addManager()
-//     } else if (input.typeOfEmployee == "engineer"){
-//         addEngineer();
-//     } else if (input.typeOfEmployee == "intern"){
-//         addIntern()
-//     } else{
-//         console.log("redo")
-//     }
-// })
+// Function for selecting type of employee
+const typeEmployee = () => {
+inquirer.prompt([
+    {
+        type: "list",
+        message: "What type of employee would you like to add?",
+        choices: ["Manager", "Engineer", "Intern"],
+        name: "role"
+    }
+]).then((answer) => {
+    if (answer.role == "Manager"){
+        addManager()
+    } else if (answer.role == "Engineer"){
+        addEngineer();
+    } else if (answer.role == "Intern"){
+        addIntern()
+    }
+})}
 
+// Function for adding employees
+const addEmployee = () => {
+    inquirer.prompt([
+        {
+            type:"confirm",
+            message: "Would you like to add another employee?",
+            name: "addAnother"
+        }
+    ]).then((answer) => {
+        if(answer.addAnother === true){
+            typeEmployee();
+        }
+        return
+    })}
+
+// Function for adding a manager
+const addManager = () => {
  inquirer.prompt([
         {
             type: 'input',
@@ -49,14 +68,16 @@ const employees = []
             name: "officeNumber"
         },
     ]).then((managerAnswers) => {
-        const {name, id, email, officeNumber} = managerAnswers
-        const manager = new Manager (name, id, email, officeNumber)
+        const {managerName, managerId, managerEmail, officeNumber} = managerAnswers
+        const manager = new Manager (managerName, managerId, managerEmail, officeNumber)
 
         employees.push(manager)
         console.log(manager);
+        addEmployee()
     })
+}
 
-
+// Function for adding an engineer
 const addEngineer = () => {
 return inquirer.prompt([
     {
@@ -80,14 +101,16 @@ return inquirer.prompt([
         name: "github"
     },
 ]).then((engineerAnswers)=> {
-    const {name,id,email,github} = engineerAnswers
-    const engineer = new Engineer (name,id, email, github)
+    const {engineerName,engineerId,engineerEmail,github} = engineerAnswers
+    const engineer = new Engineer (engineerName,engineerId,engineerEmail,github)
     
     employees.push(engineer)
     console.log(engineer)
+    addEmployee()
 })
 }
 
+// Function for adding an intern.
 const addIntern = () => {
     return inquirer.prompt([
     {
@@ -111,10 +134,12 @@ const addIntern = () => {
         name: "school"
     },
 ]).then((internAnswers)=> {
-    const {name,id,email,school} = internAnswers
-    const intern = new Intern (name,id, email, school)
+    const {internName,internId,internEmail,school} = internAnswers
+    const intern = new Intern (internName,internId,internEmail, school)
     
     employees.push(intern)
     console.log(intern)
+    addEmployee()
 })
 }
+typeEmployee()
