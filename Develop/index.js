@@ -4,10 +4,9 @@ const fs = require('fs')
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
-const Employee = require('./lib/Employee')
 
-const generateHTML = require('./util/generateHtml.js');
-const { exit } = require('process');
+const generateHtml = require('./util/generateHtml.js');
+const { join } = require('path');
 const employees = []
 
 // Function for selecting type of employee
@@ -40,8 +39,9 @@ const addEmployee = () => {
     ]).then((answer) => {
         if(answer.addAnother === true){
             typeEmployee();
+        } else{
+            attachInfo();
         }
-        return
     })}
 
 // Function for adding a manager
@@ -69,10 +69,10 @@ const addManager = () => {
         },
     ]).then((managerAnswers) => {
         const {managerName, managerId, managerEmail, officeNumber} = managerAnswers
-        const manager = new Manager (managerName, managerId, managerEmail, officeNumber)
+        const newManager = new Manager (managerName, managerId, managerEmail, officeNumber)
 
-        employees.push(manager)
-        console.log(manager);
+        employees.push(newManager)
+        console.log(newManager);
         addEmployee()
     })
 }
@@ -102,10 +102,10 @@ return inquirer.prompt([
     },
 ]).then((engineerAnswers)=> {
     const {engineerName,engineerId,engineerEmail,github} = engineerAnswers
-    const engineer = new Engineer (engineerName,engineerId,engineerEmail,github)
+    const newEngineer = new Engineer (engineerName,engineerId,engineerEmail,github)
     
-    employees.push(engineer)
-    console.log(engineer)
+    employees.push(newEngineer)
+    console.log(newEngineer)
     addEmployee()
 })
 }
@@ -135,11 +135,18 @@ const addIntern = () => {
     },
 ]).then((internAnswers)=> {
     const {internName,internId,internEmail,school} = internAnswers
-    const intern = new Intern (internName,internId,internEmail, school)
+    const newIntern = new Intern (internName,internId,internEmail, school)
     
-    employees.push(intern)
-    console.log(intern)
+    employees.push(newIntern)
+    console.log(newIntern)
     addEmployee()
 })
 }
+
+const attachInfo = employees => {
+fs.writeFile('./src/index.html', JSON.stringify(employees), (err) =>
+    err ? console.log('Error!') : console.log('File Created!')
+)}
+
 typeEmployee()
+attachInfo()
