@@ -15,15 +15,15 @@ inquirer.prompt([
     {
         type: "list",
         message: "What type of employee would you like to add?",
-        choices: ["Manager", "Engineer", "Intern"],
+        choices: ["Manager", "Engineer", "Intern", "Done"],
         name: "role"
     }
 ]).then((answer) => {
-    if (answer.role == "Manager"){
+    if (answer.role === "Manager"){
         addManager()
-    } else if (answer.role == "Engineer"){
+    } else if (answer.role === "Engineer"){
         addEngineer();
-    } else if (answer.role == "Intern"){
+    } else if (answer.role === "Intern"){
         addIntern()
     }
 })}
@@ -40,7 +40,7 @@ const addEmployee = () => {
         if(answer.addAnother === true){
             typeEmployee();
         } else{
-            attachInfo();
+            attachInfo(employees);
         }
     })}
 
@@ -144,9 +144,8 @@ const addIntern = () => {
 }
 
 const attachInfo = employees => {
-fs.writeFile('./src/index.html', JSON.stringify(employees), (err) =>
+fs.writeFile('./src/index.html', generateHtml(employees), (err) =>
     err ? console.log('Error!') : console.log('File Created!')
 )}
 
 typeEmployee()
-attachInfo()
