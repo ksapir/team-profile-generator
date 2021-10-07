@@ -6,6 +6,7 @@
 ## Table of Contents:
 - [Usage](#usage)
 - [Visual Sample](#visual)
+- [Technologies]{#tech)
 - [Contributors](#contributors)
 - [Github](#github)
 - [Email](#email)
@@ -20,9 +21,9 @@ https://drive.google.com/file/d/1pC8-ICu93wh72BPCW887akpPcRZtU1_P/view
 ## Visual Sample:
 ![Generated Team Page](/images/my-team.png)
 
+## Tech
+- NodeJs - Inquirer and FS Packages
 ## Contributors:
 - Karen Pion
-
-## Contact:
-- Github: ksapir
-- Email: karenlpion@gmail.com
+  - Github: ksapir
+  - Email: karenlpion@gmail.com
