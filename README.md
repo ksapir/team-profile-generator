@@ -1,15 +1,7 @@
 # Team Profile Generator
 
 ## Description:
-- This application will help with keeping track, adding and deleting team members. User can include the name, id number, email and other specific properties for specific roles.
-
-## Table of Contents:
-- [Usage](#usage)
-- [Visual Sample](#visual)
-- [Technologies]{#tech)
-- [Contributors](#contributors)
-- [Github](#github)
-- [Email](#email)
+This application will help with keeping track, adding and deleting team members. User can include the name, id number, email and other specifications for varying roles.
 
 
 ## Usage:
@@ -21,8 +13,12 @@ https://drive.google.com/file/d/1pC8-ICu93wh72BPCW887akpPcRZtU1_P/view
 ## Visual Sample:
 ![Generated Team Page](/images/my-team.png)
 
-## Tech
+## Technologies used:
 - NodeJs - Inquirer and FS Packages
+- Javascript
+- HTML
+- CSS
+
 ## Contributors:
 - Karen Pion
   - Github: ksapir
